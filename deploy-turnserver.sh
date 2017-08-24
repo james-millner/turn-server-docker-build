@@ -1,28 +1,21 @@
-echo $1
-echo $2
-echo $3
+echo "User: $TURN_USER"
+echo "Pass: $TURN_PASS"
+echo "Realm: $TURN_REALM"
 
+turnadmin -a -u $TURN_USER -p "$TURN_PASS" -r $TURN_REALM
+
+CONFIG_FILE=/etc/turnserver/turnserver.conf
+
+# Update config file with IP info
 internalIp="$(ip a | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
 externalIp="$(dig +short myip.opendns.com @resolver1.opendns.com)"
 
-echo "listening-port=3478
-tls-listening-port=5349
-listening-ip="$internalIp"
-relay-ip="$internalIp"
-external-ip="$externalIp"
-realm=$3
-server-name=$3
-lt-cred-mech
-userdb=/var/lib/turn/turndb
-# use real-valid certificate/privatekey files
-cert=/etc/ssl/turn_server_cert.pem
-pkey=/etc/ssl/turn_server_pkey.pem
- 
-no-stdout-log"  | tee /etc/turnserver.conf
+echo "listening-ip=$internalIp
+relay-ip=$internalIp
+external-ip=$externalIp
 
+realm=$TURN_REALM" >> ${CONFIG_FILE}
 
-turnadmin -a -u $1 -p $2 -r $3
+exec /usr/bin/turnserver -c ${CONFIG_FILE} --no-cli
 
-turnserver
-
-echo "TURN server running. IP: "$externalIp" Username: $1, password: $2"
+#echo "TURN server running. IP: "$externalIp" Username: $TURN_USER, password: $TURN_PASS"
