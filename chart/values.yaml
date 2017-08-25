@@ -1,0 +1,21 @@
+image:
+  repository: mrballcb/turnserver
+  tag: latest
+  imagePullPolicy: IfNotPresent
+replicas: 2
+persistence:
+  enabled: false
+service:
+  type: LoadBalancer
+  protocol: TCP
+  port: 443
+  containerPort: 3478
+  elbCertficateArn: arn:aws:acm:REGION:AWS_ACCOUNT_ID:certificate/CERT_HASH
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+

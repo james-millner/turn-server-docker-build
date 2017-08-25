@@ -1,0 +1,17 @@
+description: The coturn STUN/TURN server, aka turnserver, originally rfc5766-turn-server.
+name: turn
+version: 0.1.0-1
+appVersion: 4.5.0.3-1build1
+keywords:
+  - turn
+  - stun
+  - coturn
+  - turnserver
+home: https://github.com/coturn/coturn
+icon: https://www.pubnub.com/wp-content/uploads/2014/01/google-webrtc-logo.png
+sources:
+  - https://github.com/mrballcb/turn-server-docker-build
+maintainers:
+  - name: Todd Lyons
+    email: todd.lyons@pgi.com
+engine: gotpl
