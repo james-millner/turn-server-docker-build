@@ -3,6 +3,15 @@ image:
   tag: latest
   imagePullPolicy: IfNotPresent
 replicas: 2
+env:
+- name: TURN_USER
+  value: root
+- name: TURN_PASS
+  value: root
+- name: TURN_REALM
+  value: root
+#- name: TURN_ARGS
+#  value: --prod --no-cli
 persistence:
   enabled: false
 service:
