@@ -9,6 +9,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 {{- if eq .Values.service.type "LoadBalancer" }}
+{{- if .Values.service.elbCertificateArn }}
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
     service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
@@ -16,6 +17,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled: "true"
 {{- if ne .Values.uniqueStackId "prod" }}
     external-dns.alpha.kubernetes.io/hostname: turn-{{ .Values.uniqueStackId }}.dev.globalmeet.net.
+{{- end }}
 {{- end }}
 {{- end }}
 spec:
@@ -26,5 +28,5 @@ spec:
     protocol: {{ .Values.service.protocol | upper }}
     targetPort: {{ .Values.service.containerPort }}
   selector:
-    app: {{ template "fullname" . }}
+    app: {{ template "name" . }}
     release: {{ .Release.Name }}
