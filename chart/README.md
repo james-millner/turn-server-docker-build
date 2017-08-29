@@ -63,4 +63,8 @@ You can override any of these defaults by:
   CNAME record (external-dns.alpha.kubernetes.io/hostname) that points to it if
   the Kube cluster has configured and is running **external-dns** pod.  If not
   running external-dns add-on, the CNAME must be created manually.
-
+* A future goal is to have the AWS ELB configured to use ProxyProtocol v1, and
+  use an haproxy/nginx ingress with ProxyProtocol v1 enabled (bypasses kube-proxy)
+  so that the real IP hitting the AWS ELB is available.  Then can have haproxy/nginx
+  configured for stickiness, which will then allow multiple pods per deployment.
+  Once kube-proxy can speak ProxyProtocol v1, this will no longer be required.
