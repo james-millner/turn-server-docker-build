@@ -2,7 +2,7 @@ image:
   repository: mrballcb/turnserver
   tag: latest
   imagePullPolicy: IfNotPresent
-replicas: 2
+replicas: 1
 env:
 - name: TURN_USER
   value: root
