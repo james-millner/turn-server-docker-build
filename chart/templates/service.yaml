@@ -8,9 +8,13 @@ metadata:
     dns: route53
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  # Annotation docs for AWS ELB controls:
+  # - https://github.com/kubernetes/kubernetes/blob/master/pkg/cloudprovider/providers/aws/aws.go#L72
 {{- if eq .Values.service.type "LoadBalancer" }}
 {{- if .Values.service.elbCertificateArn }}
   annotations:
+    # Enables Proxy Protocol Version 1, requires haproxy ingress to properly use, proxy-kube not supports yet
+    #service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: *
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
     service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{ .Values.service.elbCertficateArn }}

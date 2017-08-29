@@ -1,8 +1,8 @@
 # Turnserver
-[Turnserver](https://github.com/mrballcb/turn-server-docker-build)
+GitHub repo: [Turnserver](https://github.com/mrballcb/turn-server-docker-build)
 
-Uploaded to a public Dockerhub repo at [Dockerhub Turnserver](https://hub.docker.com/r/mrballcb/turnserver/)
-It should also auto build on [Dockerhub Turnserver AutoBuild(https://hub.docker.com/r/mrballcb/turn-server-docker-build/)
+Uploaded to a public Dockerhub repo that should also auto build:
+[Dockerhub Turnserver AutoBuild(https://hub.docker.com/r/mrballcb/turn-server-docker-build/)
 
 ## Chart Details
 This chart will do the following:
@@ -59,6 +59,8 @@ You can override any of these defaults by:
 1. Override on the commandline with helm install --set key=value[,key=value] ...
 
 ## Notes
-* The helm chart automatically creates the ELB, but only creates an A record that points to it if the Kube
-cluster has configured and is running **external-dns** pod.  If not, it must be created manually.
+* The helm chart automatically creates the ELB, but only creates a simpler
+  CNAME record (external-dns.alpha.kubernetes.io/hostname) that points to it if
+  the Kube cluster has configured and is running **external-dns** pod.  If not
+  running external-dns add-on, the CNAME must be created manually.
 
