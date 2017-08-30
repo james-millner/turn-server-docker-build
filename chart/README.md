@@ -24,6 +24,7 @@ $ helm install . \
        -f values-STACKID.yaml \
        --name dev-turn \
        --namespace turn \
+       --set uniqueStackId=dev1 \
        --set image.repository=FOO/turnserver
 
 #### Method 1:
@@ -36,7 +37,7 @@ and modify the defaults.  Expected modifications:
 * maybe set the image.repository or version
 
 #### Method 2:
-You may choose to choose to override those same settings using **--set** on the commandline.
+You may choose to choose to override those same settings using *--set* on the commandline.
 
 ## Configuration
 The following table lists configurable parameters.
@@ -49,7 +50,7 @@ The following table lists configurable parameters.
 | `image.repoSecretName`      | Name of Dockerhub repo secret in Kube    | `dockerhub`                |
 | `replicas`                  | Number of pods to start                  | `1`                        |
 | `service.elbCertficateArn`  | Certificate ARN for AWS ELB              | See values.yaml            |
-| `uniqueStackId`             | A unique stack identifier                | None                       |
+| `uniqueStackId`             | A unique stack id, part of fullname      | None                       |
 
 There are others, but the list above is where you'll most likely find the things you'll want to change.
 

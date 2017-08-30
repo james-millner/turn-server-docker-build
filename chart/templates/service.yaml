@@ -3,15 +3,14 @@ kind: Service
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    app: {{ template "name" . }}
+    {{- include "default_selector" . | indent 4 }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     dns: route53
-    release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-  # Annotation docs for AWS ELB controls:
-  # - https://github.com/kubernetes/kubernetes/blob/master/pkg/cloudprovider/providers/aws/aws.go#L72
 {{- if eq .Values.service.type "LoadBalancer" }}
 {{- if .Values.service.elbCertificateArn }}
+  # Annotation docs for AWS ELB controls:
+  # - https://github.com/kubernetes/kubernetes/blob/master/pkg/cloudprovider/providers/aws/aws.go#L72
   annotations:
     # Enables Proxy Protocol Version 1, requires haproxy ingress to properly use, proxy-kube not supports yet
     #service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: *
@@ -32,5 +31,4 @@ spec:
     protocol: {{ .Values.service.protocol | upper }}
     targetPort: {{ .Values.service.containerPort }}
   selector:
-    app: {{ template "name" . }}
-    release: {{ .Release.Name }}
+    {{- include "default_selector" . | indent 4 }}
