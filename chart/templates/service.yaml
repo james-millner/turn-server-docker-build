@@ -19,7 +19,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{ .Values.service.elbCertficateArn }}
     service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled: "true"
 {{- if ne .Values.uniqueStackId "prod" }}
-    external-dns.alpha.kubernetes.io/hostname: turn-{{ .Values.uniqueStackId }}.dev.globalmeet.net.
+    external-dns.alpha.kubernetes.io/hostname: turn-{{ .Values.uniqueStackId }}.{{ .Values.service.baseDomain }}.
 {{- end }}
 {{- end }}
 {{- end }}

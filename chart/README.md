@@ -49,8 +49,9 @@ The following table lists configurable parameters.
 | `image.tag`                 | Version of image to run                  | `latest`                   |
 | `image.repoSecretName`      | Name of Dockerhub repo secret in Kube    | `dockerhub`                |
 | `replicas`                  | Number of pods to start                  | `1`                        |
-| `service.elbCertficateArn`  | Certificate ARN for AWS ELB              | See values.yaml            |
 | `uniqueStackId`             | A unique stack id, part of fullname      | None                       |
+| `service.elbCertficateArn`  | Certificate ARN for AWS ELB              | See values.yaml            |
+| `service.baseDomain`        | The hostedZone this will be created in   | See values.yaml            |
 
 There are others, but the list above is where you'll most likely find the things you'll want to change.
 

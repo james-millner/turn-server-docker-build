@@ -20,6 +20,7 @@ service:
   port: 443
   containerPort: 3478
   elbCertficateArn: arn:aws:acm:REGION:AWS_ACCOUNT_ID:certificate/CERT_HASH
+  baseDomain: foo.example.com
 resources:
   limits:
     cpu: 100m
