@@ -1,0 +1,37 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+
+\.DS_Store
+
+gcloud/matchdarts\.crt
+gcloud/matchdarts\.csr
+gcloud/matchdarts\.key
+
+gcloud/gcp-mysql-service-acc\.json
+
+gcloud/sql-service-pk\.json
+
