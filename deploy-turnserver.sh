@@ -3,7 +3,7 @@ echo "Pass: ${TURN_PASS}"
 echo "Realm: ${TURN_REALM}"
 echo "Turn Server Args: '${TURN_ARGS}'"
 
-turnadmin -a -u ${TURN_USER} -p "${TURN_PASS}" -r ${TURN_REALM}
+turnadmin -a -u ${TURN_USER} -p "${TURN_PASS}" -r ${TURN_REALM} --use-auth-secret --static-auth-secret=${TURN_SECRET}
 
 CONFIG_FILE=/etc/turnserver/turnserver.conf
 
